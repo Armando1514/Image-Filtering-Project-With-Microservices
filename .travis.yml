@@ -15,7 +15,7 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t feed./feed/
+  - docker build -t feed ./feed/
   - docker tag feed armando1514/feed:latest
   - docker build -t frontend ./frontend/
   - docker tag frontend armando1514/frontend:latest
