@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 13
+  - 10
 
 services:
   - docker
@@ -12,12 +12,21 @@ install:
 # Scripts to be run such as tests
 before_script:
   - echo "no tests"
-  
+
 script:
   - docker --version # print the version for logging
-  - docker build -t simple-node .
-  - docker tag simple-node armando1514/simple-node:latest
+  - docker build -t feed./feed/
+  - docker tag feed armando1514/feed:latest
+  - docker build -t frontend ./frontend/
+  - docker tag frontend armando1514/frontend:latest
+  - docker build -t ingress-controller ./ingress-controller/
+  - docker tag ingress-controller armando1514/ingress-controller:latest
+  - docker build -t user ./user/
+  - docker tag user armando1514/user:latest
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push armando1514/simple-node
+  - docker push armando1514/feed:latest
+  - docker push armando1514/user:latest
+  - docker push armando1514/frontend:latest
+  - docker push armando1514/ingress-controller:latest
