@@ -21,7 +21,7 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
   app.use(bodyParser.json());
 
 app.use(cors());
- 
+
 
   app.use('/api/v0/', IndexRouter);
 
@@ -34,6 +34,7 @@ app.use(cors());
   // Start the Server
 
   app.listen(port, () => {
+    console.log("PORT:"+port);
     console.log( `server running ${config.url}` );
     console.log( `press CTRL+C to stop server` );
   } );

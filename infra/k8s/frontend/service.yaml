@@ -6,8 +6,8 @@ metadata:
     run: frontend
 spec:
   ports:
-  - port: 80
+  - port: 8080
     targetPort: 4100
     protocol: TCP  
   selector:
-    run: frontend
+    app: frontend
