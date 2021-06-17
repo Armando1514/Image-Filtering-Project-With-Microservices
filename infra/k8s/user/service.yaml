@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app
+  name: user
   labels:
-    run: my-app
+    run: user
 spec:
   ports:
   - port: 80
     protocol: TCP
   selector:
-    run: my-app
+    run: user
