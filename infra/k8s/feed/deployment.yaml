@@ -26,6 +26,9 @@ spec:
           limits:
             cpu: 500m
             memory: 768Mi
+      - command:
+        - /metrics-server
+        - --kubelet-insecure-tls
         env:
         - name: POSTGRES_USERNAME
           valueFrom:
