@@ -3,10 +3,11 @@ kind: Service
 metadata:
   name: ingress-controller
   labels:
-    run: ingress-controller
+    app: ingress-controller
 spec:
   ports:
   - port: 8080
     protocol: TCP
   selector:
     app: ingress-controller
+  type: LoadBalancer

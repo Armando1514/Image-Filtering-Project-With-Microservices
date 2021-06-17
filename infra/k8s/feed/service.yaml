@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: feed
   labels:
-    run: feed
+    app: feed
 spec:
   ports:
   - port: 8080
