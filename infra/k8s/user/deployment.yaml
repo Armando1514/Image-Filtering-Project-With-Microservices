@@ -18,7 +18,7 @@ spec:
       - name: user
         image: armando1514/user:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         - name: POSTGRES_USERNAME
           valueFrom:
