@@ -1,21 +1,57 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
+  name: feed
   labels:
-    app: my-app
+    app: feed
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: my-app
+      app: feed
   template:
     metadata:
       labels:
-        app: my-app
+        app: feed
     spec:
       containers:
       - name: feed
         image: armando1514/feed:latest
         ports:
         - containerPort: 80
+        env:
+        - name: POSTGRES_USERNAME
+          valueFrom:
+           secretKeyRef:
+            name: database-user
+            key: database-username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+           secretKeyRef:
+            name: db-password
+            key: database-password
+        - name: POSTGRES_HOST
+          valueFrom:
+           secretKeyRef:
+            name: postgres-host
+            key: postgres-hosting
+        - name: POSTGRES_DB
+          valueFrom:
+           secretKeyRef:
+            name: postgres-db-name
+            key: postgres-db-name-key
+        - name: AWS_BUCKET
+          valueFrom:
+           secretKeyRef:
+            name: aws-bucket
+            key: aws-bucket-key
+        - name: AWS_REGION
+          valueFrom:
+           secretKeyRef:
+            name: aws-region
+            key: aws-region-key
+        - name: JWT_SECRET
+          valueFrom:
+           secretKeyRef:
+            name: jwt-secret
+            key: jwt-secret-key
