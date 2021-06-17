@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: frontend
   labels:
-    run: frontend
+    app: frontend
 spec:
   ports:
-  - port: 8080
-    targetPort: 4100
+  - port: 80
     protocol: TCP  
   selector:
     app: frontend
+  type: LoadBalancer

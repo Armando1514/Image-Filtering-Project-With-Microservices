@@ -6,7 +6,7 @@ import * as AWS from '../../../../aws';
 import * as c from '../../../../config/config';
 
 const router: Router = Router();
-
+const {v4: uuidv4} = require('uuid');
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
   if (!req.headers || !req.headers.authorization) {
     return res.status(401).send({message: 'No authorization headers.'});
@@ -34,6 +34,11 @@ router.get('/', async (req: Request, res: Response) => {
       item.url = AWS.getGetSignedUrl(item.url);
     }
   });
+  let pid = uuidv4();
+  let ip = req.headers['x-forwarded-for'] ||
+     req.socket.remoteAddress ||
+     null;
+  console.log(new Date().toLocaleString() + `: ${pid} Finished processing the request from ip: ${ip}`);
   res.send(items);
 });
 
