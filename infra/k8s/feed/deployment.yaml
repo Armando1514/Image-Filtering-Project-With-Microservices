@@ -18,7 +18,14 @@ spec:
       - name: feed
         image: armando1514/feed:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 768Mi
         env:
         - name: POSTGRES_USERNAME
           valueFrom:
