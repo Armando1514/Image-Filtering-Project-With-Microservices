@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
+  name: ingress-controller
   labels:
-    app: my-app
+    app: ingress-controller
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: my-app
+      app: ingress-controller
   template:
     metadata:
       labels:
-        app: my-app
+        app: ingress-controller
     spec:
       containers:
-      - name: simple-api
-        image: <ECR_REPOSITORY>
+      - name: ingress-controller
+        image: armando1514/ingress-controller
         ports:
         - containerPort: 80
